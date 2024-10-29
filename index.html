@@ -44,7 +44,6 @@
 <body>
 
 <div class="logo">
-  <!-- Substitua 'logo.png' pelo caminho da sua imagem de logo -->
   <img src="logo.webp" alt="Logo Viagens do Corres">
   <h2>Viagens dos Corres</h2>
 </div>
@@ -54,8 +53,11 @@
   <div class="time" id="countdown"></div>
 </div>
 
+<audio id="alertSound" src="alert.mp4" preload="auto"></audio>
+
 <script>
   const targetDate = new Date("December 16, 2024 00:00:00").getTime();
+  let alertInterval;
 
   const countdownFunction = setInterval(function() {
     const now = new Date().getTime();
@@ -71,9 +73,16 @@
 
     if (distance < 0) {
       clearInterval(countdownFunction);
+      clearInterval(alertInterval); // Para o alerta sonoro
       document.getElementById("countdown").innerHTML = "Tempo esgotado!";
     }
   }, 1000);
+
+  // Alerta sonoro a cada 1 minuto
+  alertInterval = setInterval(function() {
+    const sound = document.getElementById("alertSound");
+    sound.play();
+  }, 6); // 60000 ms = 1 minuto
 </script>
 
 </body>
