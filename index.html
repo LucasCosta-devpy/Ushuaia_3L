@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contagem Regressiva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background-color: #282c34;
+      color: #fff;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 100px; /* Ajuste o tamanho da imagem conforme necessário */
+      height: auto;
+      border-radius: 50%; /* Torna a imagem arredondada */
+    }
+    .logo h2 {
+      margin: 10px 0 0;
+      font-size: 1.5em;
+      color: #61dafb;
+    }
+    .countdown {
+      text-align: center;
+      font-size: 2em;
+    }
+    .time {
+      font-weight: bold;
+      font-size: 3em;
+      color: #61dafb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="logo">
+  <!-- Substitua 'logo.png' pelo caminho da sua imagem de logo -->
+  <img src="logo.webp" alt="Logo Viagens do Corres">
+  <h2>Viagens dos Corres</h2>
+</div>
+
+<div class="countdown">
+  <h1>Contagem Regressiva para Ushuaia</h1>
+  <div class="time" id="countdown"></div>
+</div>
+
+<script>
+  const targetDate = new Date("December 16, 2024 00:00:00").getTime();
+
+  const countdownFunction = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = 
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    if (distance < 0) {
+      clearInterval(countdownFunction);
+      document.getElementById("countdown").innerHTML = "Tempo esgotado!";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
